@@ -1,0 +1,34 @@
+<%= form_with(model: task, local: true) do |form| %>
+  <% if task.errors.any? %>
+    <div style="background-color: #3a315c; padding: 10px; border-radius: 6px; margin-bottom: 1em;">
+      <h2><%= pluralize(task.errors.count, "erro") %> proibiu este task de ser salvo:</h2>
+      <ul>
+        <% task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :done %>
+    <%= form.check_box :done %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.submit "Salvar", class: "button" %>
+  </div>
+<% end %>
+

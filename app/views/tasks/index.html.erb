@@ -1,0 +1,56 @@
+<% if notice %>
+  <p style="color: lightgreen;"><%= notice %></p>
+<% end %>
+
+<% content_for :title, "Tasks on Rails" %>
+
+<h1 style="text-align: center; color: #d3bfff; font-size: 2.5em; margin-bottom: 30px; text-shadow: 1px 1px 4px #000000aa; font-weight: bold; letter-spacing: 2px; font-family: Impact, Charcoal, sans-serif; font-style: italic;">
+  Tasks on Rails
+</h1>
+
+
+
+<div style="text-align: center; margin-bottom: 30px;">
+  <%= link_to "Nova Tarefa", new_task_path, class: "button", style: "background-color: #6a4c93; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background-color 0.3s;" %>
+</div>
+
+<section id="task-cards" style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 10px;">
+  <% @tasks.each do |task| %>
+    <div style="min-width: 280px; flex: 0 0 auto; background-color: #2c2545; padding: 16px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2);">
+      <p><strong style="color: #c7bfff;">Título:</strong> <%= task.title.presence || "—" %></p>
+      <p><strong style="color: #c7bfff;">Descrição:</strong> <%= task.description.presence || "—" %></p>
+      <p><strong style="color: #c7bfff;">Concluída:</strong> <%= task.done ? "✅ Sim" : "❌ Não" %></p>
+      <div style="margin-top: 10px;">
+        <%= link_to "Ver", task, class: "button" %>
+        <%= link_to "Editar", edit_task_path(task), class: "button" %>
+      </div>
+    </div>
+  <% end %>
+</section>
+
+<h2 style="color: #e0d8ff;">Todas as Tarefas</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Feita?</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.description %></td>
+        <td><%= task.done ? "✅" : "❌" %></td>
+        <td>
+          <%= link_to "Editar", edit_task_path(task), class: "button" %>
+          <%= link_to "Apagar", task, method: :delete, data: { confirm: "Tem certeza?" }, class: "button", style: "background-color: darkblue;" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
