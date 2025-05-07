@@ -10,6 +10,10 @@
 <div>
   <%= link_to "Editar esta tarefa", edit_task_path(@task), class: "button" %>
   <%= link_to "Voltar para a lista", tasks_path, class: "button" %>
-  <%= button_to "Apagar esta tarefa", @task, method: :delete, data: { confirm: "Tem certeza?" }, class: "button", form: { style: "display: inline;" } %>
+  <%= button_to "Apagar esta tarefa", @task, method: :delete, data: { confirm: "Tem certeza?" },
+  class: "button",
+  form: { style: "display: inline;" },
+  style: "background-color: #8c5cff; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 1em; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background-color 0.3s;" %>
+
 </div>
 

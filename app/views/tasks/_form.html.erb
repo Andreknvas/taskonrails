@@ -21,6 +21,12 @@
   </div>
 
   <div>
+  <%= form.label :priority, "Prioridade" %><br>
+  <%= form.select :priority, ["Alta", "Média", "Baixa"], {}, class: "form-control" %>
+</div>
+
+
+  <div>
     <%= form.label :done %>
     <%= form.check_box :done %>
   </div>

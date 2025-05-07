@@ -39,6 +39,17 @@
     <div style="min-width: 280px; flex: 0 0 auto; background-color: #2c2545; padding: 16px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2);">
       <p><strong style="color: #c7bfff;">Título:</strong> <%= task.title.presence || "—" %></p>
       <p><strong style="color: #c7bfff;">Descrição:</strong> <%= task.description.presence || "—" %></p>
+     <% prioridade_cor = case task.priority
+  when "Alta" then "maroon"
+  when "Média" then "olive"
+  when "Baixa" then "green"
+  else "#ccc"
+end %>
+      <p>
+  <strong style="color: #c7bfff;">Prioridade:</strong>
+  <span style="color: <%= prioridade_cor %>;"><%= task.priority || "—" %></span>
+</p>
+
       <p><strong style="color: #c7bfff;">Concluída:</strong> <%= task.done ? "✅ Sim" : "❌ Não" %></p>
       <div style="margin-top: 10px;">
         <%= link_to "Ver", task, class: "button" %>
@@ -47,7 +58,7 @@
     </div>
   <% end %>
 </section>
-
+<br></br>
 <h2 style="color: #e0d8ff;">Todas as Tarefas</h2>
 
 <table>
@@ -55,7 +66,7 @@
     <tr>
       <th>Título</th>
       <th>Descrição</th>
-      <th>Feita?</th>
+      <th>Concluida</th>
       <th>Ações</th>
     </tr>
   </thead>
@@ -63,7 +74,10 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.title %></td>
-        <td><%= task.description %></td>
+        <td style="max-width: 350px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+  <%= truncate(task.description, length: 90) %>
+</td>
+
         <td><%= task.done ? "✅" : "❌" %></td>
         <td>
           <%= link_to "Editar", edit_task_path(task), class: "button" %>
