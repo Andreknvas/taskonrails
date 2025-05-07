@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby 3.2.3
 
-Things you may want to cover:
+* Rails 8.0.2
 
-* Ruby version
+* Rbenv 1.1.2
 
-* System dependencies
+* Ruby rodando globalmente com o Ruby 3.2.3
 
-* Configuration
+* SqLite
 
-* Database creation
+* rails db:migrate
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* rails server na pasta raiz roda o projeto
