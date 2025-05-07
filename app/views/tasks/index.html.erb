@@ -4,9 +4,26 @@
 
 <% content_for :title, "Tasks on Rails" %>
 
-<p style="text-align: center; text-shadow: 1px 1px 4px #000000aa; font-weight: bold; font-style: italic"><%= Time.now.strftime("%d/%m/%Y") %></p>
+ <script>
+    function atualizarRelogio() {
+      const agora = new Date();
+      const horas = agora.getHours().toString().padStart(2, '0');
+      const minutos = agora.getMinutes().toString().padStart(2, '0');
+      const segundos = agora.getSeconds().toString().padStart(2, '0');
+      const horarioFormatado = `${horas}:${minutos}:${segundos}`;
+      document.getElementById("relogio").textContent = horarioFormatado;
+    }
 
-<h1 style="text-align: center; color: #d3bfff; font-size: 2.5em; margin-bottom: 30px; text-shadow: 1px 1px 4px #000000aa; font-weight: bold; letter-spacing: 2px; font-family: Impact, Charcoal, sans-serif; font-style: italic;">
+    // Atualiza o relógio a cada segundo
+    setInterval(atualizarRelogio, 1000);
+
+    // Atualiza imediatamente ao carregar
+    atualizarRelogio();
+  </script>
+
+<p style="text-align: center; text-shadow: 1px 1px 4px #000000aa; font-weight: bold; font-style: italic"><%= Time.now.strftime("%d/%m/%Y - ") %><span id="relogio"></span></p>
+
+<h1 style="text-align: center; color: #d3bfff; font-size: 3em; margin-bottom: 30px; margin-top: 50px; text-shadow: 1px 1px 4px #000000aa; font-weight: bold; letter-spacing: 2px; font-family: Impact, Charcoal, sans-serif; font-style: italic;">
   Tasks on Rails
 </h1>
 
@@ -14,7 +31,7 @@
 
 
 <div style="text-align: center; margin-bottom: 30px;">
-  <%= link_to "Nova Tarefa", new_task_path, class: "button", style: "background-color: #6a4c93; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background-color 0.3s;" %>
+  <%= link_to "Nova Tarefa", new_task_path, class: "button", style: "background-color: #6a4c93; color: white; margin-bottom: 30px; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background-color 0.3s;" %>
 </div>
 
 <section id="task-cards" style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 10px;">
@@ -50,7 +67,7 @@
         <td><%= task.done ? "✅" : "❌" %></td>
         <td>
           <%= link_to "Editar", edit_task_path(task), class: "button" %>
-          <%= link_to "Apagar", task, method: :delete, data: { confirm: "Tem certeza?" }, class: "button", style: "background-color: darkblue;" %>
+          <%= link_to "Apagar", task, method: :delete, data: { confirm: "Tem certeza?" }, class: "button", style: "background-color: darkblue; margin-right: -130px" %>
         </td>
       </tr>
     <% end %>
