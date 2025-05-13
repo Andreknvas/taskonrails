@@ -11,12 +11,12 @@
   <% end %>
 
   <div>
-    <%= form.label :title %>
+    <%= form.label :title, "Título da tarefa" %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :description %>
+    <%= form.label :description, "Descrição da tarefa" %>
     <%= form.text_area :description %>
   </div>
 
@@ -26,8 +26,8 @@
 </div>
 
 
-  <div>
-    <%= form.label :done %>
+  <div style: "margin: auto">
+    <%= form.label :done, "Concluída" %>
     <%= form.check_box :done %>
   </div>
 
